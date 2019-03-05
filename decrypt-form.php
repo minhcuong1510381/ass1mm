@@ -13,7 +13,7 @@
 			<form action="decrypt.php" method="post" enctype = "multipart/form-data">
 				<div class="form-group">
 					<label>Algorithms</label>
-					<select onchange="mySelect();" class="form-control algorithms" name="algorithms" id="algorithms">
+					<select onchange="mySelectDecrypt();" class="form-control algorithms" name="algorithms" id="algorithms">
 						<option value="1">DES</option>
 						<option value="2">AES</option>
 						<option value="3">RSA</option>
@@ -23,34 +23,23 @@
 					<label>Enter your key</label>
 					<input type="text" name="key" class="form-control key">
 				</div>
+				<div class="form-group" id="publicKey" style="display: none">
+					<label>Choose Public Key to Sign (2048 bit)</label>
+					<input type="file" name="publicFile" class="form-control-file">
+				</div>
+				<div class="form-group" id="privateKey" style="display: none">
+					<label>Choose Private Key to Decrypt (2048 bit)</label>
+					<input type="file" name="privateFile" class="form-control-file">
+				</div>
 				<div class="form-group" id="file">
-					<label>Choose file decrypt</label>
+					<label>Choose file Decrypt</label>
 					<input type="file" name="file" class="form-control-file">
 				</div>
-				<div class="button" id="button">
+				<div class="button" id="button" style="padding-top: 1	0px;">
 					<input type="submit" name="btn_submit" value="Decrypt" class="btn btn-primary">
 					<a type="cancel" class="btn btn-danger" href="index.php">Cancel</a>
 				</div>
 			</form>
 		</div>
 	</div>
-	<script>
-		setTimeout(function() {
-		    $('#error').fadeOut('fast');
-		}, 2000);
-		function mySelect(){
-			var algorithmsID = document.getElementById('algorithms').value;
-
-			if(algorithmsID == 3){
-				$("#keyInput").css("display", "none");
-				$("#file").css("padding-top","30px");
-				$("#button").css("padding-top","30px");
-			}
-			else{
-				$("#keyInput").css("display", "block");
-				$("#file").css("padding-top","0");
-				$("#button").css("padding-top","0");
-			}
-		}
-	</script>
 <?php include('inc/footer.php'); ?>

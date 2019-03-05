@@ -13,14 +13,22 @@
 			<form action="encrypt.php" method="post" enctype = "multipart/form-data">
 				<div class="form-group">
 					<label>Algorithms</label>
-					<select class="form-control algorithms" name="algorithms">
+					<select onchange="mySelectEncrypt();" class="form-control algorithms" name="algorithms" id="algorithms">
 						<option value="1">DES</option>
 						<option value="2">AES</option>
 						<option value="3">RSA</option>
 					</select>
 				</div>
-				<div class="form-group" style="padding-top: 30px;">
-					<label>Choose file to encrypt</label>
+				<div class="form-group" id="publicKey" style="display: none">
+					<label>Choose Public Key to Encrypt (2048 bit)</label>
+					<input type="file" name="publicFile" class="form-control-file">
+				</div>
+				<div class="form-group" id="privateKey" style="display: none">
+					<label>Choose Private Key to Sign (2048 bit)</label>
+					<input type="file" name="privateFile" class="form-control-file">
+				</div>
+				<div class="form-group" id="file" style="padding-top: 30px;">
+					<label>Choose file to Encrypt</label>
 					<input type="file" name="file" class="form-control-file">
 				</div>
 				<div class="button" style="padding-top: 30px;">
@@ -30,9 +38,4 @@
 			</form>
 		</div>
 	</div>
-	<script>
-		setTimeout(function() {
-		    $('#error').fadeOut('fast');
-		}, 2000);
-	</script>
 <?php include('inc/footer.php'); ?>

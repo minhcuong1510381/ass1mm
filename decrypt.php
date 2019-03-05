@@ -64,12 +64,26 @@ if(isset($_POST["btn_submit"])){
         }
         else{
             $cryptRSA = new RSA();
-            
-            $prikey = file_get_contents('keyRSA/private.pem');
 
-            $pubkey = file_get_contents('keyRSA/public.pem');
+            if($_FILES['publicFile']['name'] == null){
+                $msg = "Please choose Public Key!";
+                header("Location: encrypt-form.php?msg=$msg");
+                die;
+            }
+            else if($_FILES['privateFile']['name'] == null){
+                $msg = "Please choose Private Key!";
+                header("Location: encrypt-form.php?msg=$msg");
+                die;
+            }
+            else{
+                move_uploaded_file($_FILES['publicFile']['tmp_name'], 'keyRSA/'.$_FILES['publicFile']['name']);
+                move_uploaded_file($_FILES['privateFile']['tmp_name'], 'keyRSA/'.$_FILES['privateFile']['name']);
 
-            $plainText = $cryptRSA->decrypt($cipherText, $prikey, $pubkey);  
+                $pubkey = file_get_contents('keyRSA/'.$_FILES['publicFile']['name']);
+
+                $prikey = file_get_contents('keyRSA/'.$_FILES['privateFile']['name']);
+                $plainText = $cryptRSA->decrypt($cipherText, $prikey, $pubkey);
+            }      
         }
 
         $nameFileEncryptBase64 = str_replace(".".$ext, "", $file_name);

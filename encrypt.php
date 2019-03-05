@@ -45,12 +45,25 @@
             else{
                 $cryptRSA = new RSA();
 
-                $pubkey = file_get_contents('keyRSA/public.pem');
+                if($_FILES['publicFile']['name'] == null){
+                    $msg = "Please choose Public Key!";
+                    header("Location: encrypt-form.php?msg=$msg");
+                    die;
+                }
+                else if($_FILES['privateFile']['name'] == null){
+                    $msg = "Please choose Private Key!";
+                    header("Location: encrypt-form.php?msg=$msg");
+                    die;
+                }
+                else{
+                    move_uploaded_file($_FILES['publicFile']['tmp_name'], 'keyRSA/'.$_FILES['publicFile']['name']);
+                    move_uploaded_file($_FILES['privateFile']['tmp_name'], 'keyRSA/'.$_FILES['privateFile']['name']);
 
-                $prikey = file_get_contents('keyRSA/private.pem');
+                    $pubkey = file_get_contents('keyRSA/'.$_FILES['publicFile']['name']);
 
-                $ciphertText = $cryptRSA->encrypt($plaintext, $pubkey, $prikey);
-
+                    $prikey = file_get_contents('keyRSA/'.$_FILES['privateFile']['name']);
+                    $ciphertText = $cryptRSA->encrypt($plaintext, $pubkey, $prikey);
+                }
             }
 
             $fileCrypt_name = base64_encode($file_name).".cry";
