@@ -1,0 +1,89 @@
+.container{
+	margin: 50px;
+	padding: 30px;
+}
+.content{
+	position:absolute;
+	top: 50%;
+    left: 50%;
+    width:30em;
+    height:20em;
+	border: 1px solid #ccc;
+	border-radius: 16px;
+	margin-top: -8em;
+    margin-left: -15em;
+    background-color: #f3f3f3;
+    text-align: center;
+}
+.title .fa-key{
+	color: #ef7779;
+	padding-top: 50px;
+}
+.title h1{
+	text-align: center;
+	color: #3e434d;
+}
+.type{
+	padding-top: 30px;
+}
+.encrypt {
+	text-align: center;
+}
+.decrypt {
+	text-align: center;
+}
+.encrypt a{
+	color: #3e434d;
+	font-size: 20px;
+	font-weight: 500;
+	text-decoration: none !important;
+}
+.encrypt a:hover{
+	color: #ef7779;
+}
+.decrypt a{
+	color: #3e434d;
+	font-size: 20px;
+	font-weight: 500;
+	text-decoration: none !important;
+}
+.decrypt a:hover{
+	color: #ef7779;
+}
+.clear{
+	text-align: center;
+}
+.clear a{
+	color: #3e434d;
+	font-size: 20px;
+	font-weight: 500;
+	text-decoration: none !important;
+}
+.clear a:hover{
+	color: #ef7779;
+}
+.fa-lock i{
+	color: #656d7e;
+}
+.fa-unlock-alt i{
+	color: #656d7e;
+}
+i:hover{
+	color: #ef7779;
+}
+.form-control.algorithms{
+	width: 200px;
+	margin: 0 auto;
+}
+.form-control.key{
+	width: 200px;
+	margin: 0 auto;
+}
+.form-control-file{
+	width: 200px !important;
+	margin: 0 auto !important;
+}
+.error{
+	width: 30em;
+	margin: 0 auto;
+}
