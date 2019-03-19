@@ -3,7 +3,7 @@ class DES{
 	public $method;
 	
 	public function __construct(){
-		$this->method = "DES-CBC";
+		$this->method = "DES-EDE3-CBC";
 	}
 
 	public function encrypt($plaintext, $key){
